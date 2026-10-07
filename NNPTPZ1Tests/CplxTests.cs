@@ -16,17 +16,14 @@ namespace NNPTPZ1.Mathematics.Tests
         [TestMethod()]
         public void AddTestPolynome()
         {
-            Poly poly = new Mathematics.Poly();
-            poly.Coe.Add(new Cplx() { Re = 1, Imaginari = 0 });
-            poly.Coe.Add(new Cplx() { Re = 0, Imaginari = 0 });
-            poly.Coe.Add(new Cplx() { Re = 1, Imaginari = 0 });
-            Cplx result = poly.Eval(new Cplx() { Re = 0, Imaginari = 0 });
+            Poly polynomial = CreateTestPolynomial();
+            Cplx result = polynomial.Eval(new Cplx() { Re = 0, Imaginari = 0 });
             var expected = new Cplx() { Re = 1, Imaginari = 0 };
             Assert.AreEqual(expected, result);
-            result = poly.Eval(new Cplx() { Re = 1, Imaginari = 0 });
+            result = polynomial.Eval(new Cplx() { Re = 1, Imaginari = 0 });
             expected = new Cplx() { Re = 2, Imaginari = 0 };
             Assert.AreEqual(expected, result);
-            result = poly.Eval(new Cplx() { Re = 2, Imaginari = 0 });
+            result = polynomial.Eval(new Cplx() { Re = 2, Imaginari = 0 });
             expected = new Cplx() { Re = 5.0000000000, Imaginari = 0 };
             Assert.AreEqual(expected, result);
         }
@@ -114,14 +111,21 @@ namespace NNPTPZ1.Mathematics.Tests
         [TestMethod()]
         public void ToString_Polynomial_ReturnsExpectedFormat()
         {
+            Poly polynomial = CreateTestPolynomial();
+
+            string expected = "(1 + 0i) + (0 + 0i)x + (1 + 0i)xx";
+
+            Assert.AreEqual(expected, polynomial.ToString());
+        }
+        
+        private Poly CreateTestPolynomial()
+        {
             Poly polynomial = new Poly();
             polynomial.Coe.Add(new Cplx() { Re = 1, Imaginari = 0 });
             polynomial.Coe.Add(new Cplx() { Re = 0, Imaginari = 0 });
             polynomial.Coe.Add(new Cplx() { Re = 1, Imaginari = 0 });
 
-            string expected = "(1 + 0i) + (0 + 0i)x + (1 + 0i)xx";
-
-            Assert.AreEqual(expected, polynomial.ToString());
+            return polynomial;
         }
     }
 }
