@@ -18,13 +18,13 @@ namespace NNPTPZ1
             string output = args[6];
             // TODO: add parameters from args?
             Bitmap bmp = new Bitmap(width, height);
-            double xmin = double.Parse(args[2]);
-            double xmax = double.Parse(args[3]);
-            double ymin = double.Parse(args[4]);
-            double ymax = double.Parse(args[5]);
+            double xMin = double.Parse(args[2]);
+            double xMax = double.Parse(args[3]);
+            double yMin = double.Parse(args[4]);
+            double yMax = double.Parse(args[5]);
 
-            double xstep = (xmax - xmin) / width;
-            double ystep = (ymax - ymin) / height;
+            double xstep = (xMax - xMin) / width;
+            double ystep = (yMax - yMin) / height;
 
             List<Cplx> koreny = new List<Cplx>();
             // TODO: poly should be parameterised?
@@ -54,8 +54,8 @@ namespace NNPTPZ1
                 for (int j = 0; j < height; j++)
                 {
                     // find "world" coordinates of pixel
-                    double y = ymin + i * ystep;
-                    double x = xmin + j * xstep;
+                    double y = yMin + i * ystep;
+                    double x = xMin + j * xstep;
 
                     Cplx ox = new Cplx()
                     {
