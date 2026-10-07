@@ -23,8 +23,8 @@ namespace NNPTPZ1
             double yMin = double.Parse(args[4]);
             double yMax = double.Parse(args[5]);
 
-            double xstep = (xMax - xMin) / width;
-            double ystep = (yMax - yMin) / height;
+            double xStep = (xMax - xMin) / width;
+            double yStep = (yMax - yMin) / height;
 
             List<Cplx> koreny = new List<Cplx>();
             // TODO: poly should be parameterised?
@@ -54,8 +54,8 @@ namespace NNPTPZ1
                 for (int j = 0; j < height; j++)
                 {
                     // find "world" coordinates of pixel
-                    double y = yMin + i * ystep;
-                    double x = xMin + j * xstep;
+                    double y = yMin + i * yStep;
+                    double x = xMin + j * xStep;
 
                     Cplx ox = new Cplx()
                     {
