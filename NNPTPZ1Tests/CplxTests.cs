@@ -29,10 +29,6 @@ namespace NNPTPZ1.Mathematics.Tests
             result = poly.Eval(new Cplx() { Re = 2, Imaginari = 0 });
             expected = new Cplx() { Re = 5.0000000000, Imaginari = 0 };
             Assert.AreEqual(expected, result);
-
-            var r2 = poly.ToString();
-            var e2 = "(1 + 0i) + (0 + 0i)x + (1 + 0i)xx";
-            Assert.AreEqual(e2, r2);
         }
         
         [TestMethod()]
@@ -113,6 +109,19 @@ namespace NNPTPZ1.Mathematics.Tests
             Cplx actual = number.Add(zero);
 
             Assert.AreEqual(expected, actual);
+        }
+        
+        [TestMethod()]
+        public void ToString_Polynomial_ReturnsExpectedFormat()
+        {
+            Poly polynomial = new Poly();
+            polynomial.Coe.Add(new Cplx() { Re = 1, Imaginari = 0 });
+            polynomial.Coe.Add(new Cplx() { Re = 0, Imaginari = 0 });
+            polynomial.Coe.Add(new Cplx() { Re = 1, Imaginari = 0 });
+
+            string expected = "(1 + 0i) + (0 + 0i)x + (1 + 0i)xx";
+
+            Assert.AreEqual(expected, polynomial.ToString());
         }
     }
 }
