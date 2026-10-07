@@ -15,18 +15,13 @@ namespace NNPTPZ1
         {
             int width = int.Parse(args[0]);
             int height = int.Parse(args[1]);
-            double[] coordinateBounds = new double[4];
-            for (int i = 0; i < coordinateBounds.Length; i++)
-            {
-                coordinateBounds[i] = double.Parse(args[i + 2]);
-            }
             string output = args[6];
             // TODO: add parameters from args?
             Bitmap bmp = new Bitmap(width, height);
-            double xmin = coordinateBounds[0];
-            double xmax = coordinateBounds[1];
-            double ymin = coordinateBounds[2];
-            double ymax = coordinateBounds[3];
+            double xmin = double.Parse(args[2]);
+            double xmax = double.Parse(args[3]);
+            double ymin = double.Parse(args[4]);
+            double ymax = double.Parse(args[5]);
 
             double xstep = (xmax - xmin) / width;
             double ystep = (ymax - ymin) / height;
