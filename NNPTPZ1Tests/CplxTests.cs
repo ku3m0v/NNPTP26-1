@@ -17,11 +17,8 @@ namespace NNPTPZ1.Mathematics.Tests
         public void AddTestPolynome()
         {
             Poly polynomial = CreateTestPolynomial();
-            Cplx result = polynomial.Eval(new Cplx() { Re = 0, Imaginari = 0 });
-            var expected = new Cplx() { Re = 1, Imaginari = 0 };
-            Assert.AreEqual(expected, result);
-            result = polynomial.Eval(new Cplx() { Re = 1, Imaginari = 0 });
-            expected = new Cplx() { Re = 2, Imaginari = 0 };
+            Cplx result = polynomial.Eval(new Cplx() { Re = 1, Imaginari = 0 });
+            var expected = new Cplx() { Re = 2, Imaginari = 0 };
             Assert.AreEqual(expected, result);
             result = polynomial.Eval(new Cplx() { Re = 2, Imaginari = 0 });
             expected = new Cplx() { Re = 5.0000000000, Imaginari = 0 };
@@ -116,6 +113,19 @@ namespace NNPTPZ1.Mathematics.Tests
             string expected = "(1 + 0i) + (0 + 0i)x + (1 + 0i)xx";
 
             Assert.AreEqual(expected, polynomial.ToString());
+        }
+        
+        [TestMethod()]
+        public void Eval_AtZero_ReturnsOne()
+        {
+            Poly polynomial = CreateTestPolynomial();
+
+            Cplx input = new Cplx() { Re = 0, Imaginari = 0 };
+            Cplx expected = new Cplx() { Re = 1, Imaginari = 0 };
+
+            Cplx actual = polynomial.Eval(input);
+
+            Assert.AreEqual(expected, actual);
         }
         
         private Poly CreateTestPolynomial()
