@@ -36,13 +36,6 @@ namespace NNPTPZ1.Mathematics.Tests
 
             Assert.AreEqual(shouldBe, actual);
 
-            var e2 = "(10 + 20i)";
-            var r2 = a.ToString();
-            Assert.AreEqual(e2, r2);
-            e2 = "(1 + 2i)";
-            r2 = b.ToString();
-            Assert.AreEqual(e2, r2);
-
             a = new Cplx()
             {
                 Re = 1,
@@ -52,14 +45,6 @@ namespace NNPTPZ1.Mathematics.Tests
             shouldBe = new Cplx() { Re = 1, Imaginari = -1 };
             actual = a.Add(b);
             Assert.AreEqual(shouldBe, actual);
-
-            e2 = "(1 + -1i)";
-            r2 = a.ToString();
-            Assert.AreEqual(e2, r2);
-
-            e2 = "(0 + 0i)";
-            r2 = b.ToString();
-            Assert.AreEqual(e2, r2);
         }
 
         [TestMethod()]
@@ -82,6 +67,34 @@ namespace NNPTPZ1.Mathematics.Tests
             var r2 = poly.ToString();
             var e2 = "(1 + 0i) + (0 + 0i)x + (1 + 0i)xx";
             Assert.AreEqual(e2, r2);
+        }
+        
+        [TestMethod()]
+        public void ToString_ComplexNumber_ReturnsExpectedFormat()
+        {
+            Cplx positiveComplexNumber = new Cplx()
+            {
+                Re = 10,
+                Imaginari = 20
+            };
+
+            Assert.AreEqual("(10 + 20i)", positiveComplexNumber.ToString());
+
+            Cplx negativeImaginaryNumber = new Cplx()
+            {
+                Re = 1,
+                Imaginari = -1
+            };
+
+            Assert.AreEqual("(1 + -1i)", negativeImaginaryNumber.ToString());
+
+            Cplx zero = new Cplx()
+            {
+                Re = 0,
+                Imaginari = 0
+            };
+
+            Assert.AreEqual("(0 + 0i)", zero.ToString());
         }
     }
 }
