@@ -44,8 +44,6 @@ namespace NNPTPZ1
                 Color.Red, Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Fuchsia, Color.Gold, Color.Cyan, Color.Magenta
             };
 
-            var maxid = 0;
-
             // TODO: cleanup!!!
             // for every pixel in image...
             for (int i = 0; i < width; i++)
@@ -101,7 +99,6 @@ namespace NNPTPZ1
                     {
                         koreny.Add(ox);
                         id = koreny.Count;
-                        maxid = id + 1; 
                     }
 
                     // colorize pixel according to root number
