@@ -13,26 +13,26 @@ namespace NNPTPZ1
     {
         static void Main(string[] args)
         {
-            int[] intargs = new int[2];
-            for (int i = 0; i < intargs.Length; i++)
+            int[] imageDimensions = new int[2];
+            for (int i = 0; i < imageDimensions.Length; i++)
             {
-                intargs[i] = int.Parse(args[i]);
+                imageDimensions[i] = int.Parse(args[i]);
             }
-            double[] doubleargs = new double[4];
-            for (int i = 0; i < doubleargs.Length; i++)
+            double[] coordinateBounds = new double[4];
+            for (int i = 0; i < coordinateBounds.Length; i++)
             {
-                doubleargs[i] = double.Parse(args[i + 2]);
+                coordinateBounds[i] = double.Parse(args[i + 2]);
             }
             string output = args[6];
             // TODO: add parameters from args?
-            Bitmap bmp = new Bitmap(intargs[0], intargs[1]);
-            double xmin = doubleargs[0];
-            double xmax = doubleargs[1];
-            double ymin = doubleargs[2];
-            double ymax = doubleargs[3];
+            Bitmap bmp = new Bitmap(imageDimensions[0], imageDimensions[1]);
+            double xmin = coordinateBounds[0];
+            double xmax = coordinateBounds[1];
+            double ymin = coordinateBounds[2];
+            double ymax = coordinateBounds[3];
 
-            double xstep = (xmax - xmin) / intargs[0];
-            double ystep = (ymax - ymin) / intargs[1];
+            double xstep = (xmax - xmin) / imageDimensions[0];
+            double ystep = (ymax - ymin) / imageDimensions[1];
 
             List<Cplx> koreny = new List<Cplx>();
             // TODO: poly should be parameterised?
@@ -57,9 +57,9 @@ namespace NNPTPZ1
 
             // TODO: cleanup!!!
             // for every pixel in image...
-            for (int i = 0; i < intargs[0]; i++)
+            for (int i = 0; i < imageDimensions[0]; i++)
             {
-                for (int j = 0; j < intargs[1]; j++)
+                for (int j = 0; j < imageDimensions[1]; j++)
                 {
                     // find "world" coordinates of pixel
                     double y = ymin + i * ystep;
