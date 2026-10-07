@@ -13,11 +13,8 @@ namespace NNPTPZ1
     {
         static void Main(string[] args)
         {
-            int[] imageDimensions = new int[2];
-            for (int i = 0; i < imageDimensions.Length; i++)
-            {
-                imageDimensions[i] = int.Parse(args[i]);
-            }
+            int width = int.Parse(args[0]);
+            int height = int.Parse(args[1]);
             double[] coordinateBounds = new double[4];
             for (int i = 0; i < coordinateBounds.Length; i++)
             {
@@ -25,14 +22,14 @@ namespace NNPTPZ1
             }
             string output = args[6];
             // TODO: add parameters from args?
-            Bitmap bmp = new Bitmap(imageDimensions[0], imageDimensions[1]);
+            Bitmap bmp = new Bitmap(width, height);
             double xmin = coordinateBounds[0];
             double xmax = coordinateBounds[1];
             double ymin = coordinateBounds[2];
             double ymax = coordinateBounds[3];
 
-            double xstep = (xmax - xmin) / imageDimensions[0];
-            double ystep = (ymax - ymin) / imageDimensions[1];
+            double xstep = (xmax - xmin) / width;
+            double ystep = (ymax - ymin) / height;
 
             List<Cplx> koreny = new List<Cplx>();
             // TODO: poly should be parameterised?
@@ -57,9 +54,9 @@ namespace NNPTPZ1
 
             // TODO: cleanup!!!
             // for every pixel in image...
-            for (int i = 0; i < imageDimensions[0]; i++)
+            for (int i = 0; i < width; i++)
             {
-                for (int j = 0; j < imageDimensions[1]; j++)
+                for (int j = 0; j < height; j++)
                 {
                     // find "world" coordinates of pixel
                     double y = ymin + i * ystep;
