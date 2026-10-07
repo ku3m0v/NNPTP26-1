@@ -14,40 +14,6 @@ namespace NNPTPZ1.Mathematics.Tests
     {
 
         [TestMethod()]
-        public void AddTest()
-        {
-            Cplx a = new Cplx()
-            {
-                Re = 10,
-                Imaginari = 20
-            };
-            Cplx b = new Cplx()
-            {
-                Re = 1,
-                Imaginari = 2
-            };
-
-            Cplx actual = a.Add(b);
-            Cplx shouldBe = new Cplx()
-            {
-                Re = 11,
-                Imaginari = 22
-            };
-
-            Assert.AreEqual(shouldBe, actual);
-
-            a = new Cplx()
-            {
-                Re = 1,
-                Imaginari = -1
-            };
-            b = new Cplx() { Re = 0, Imaginari = 0 };
-            shouldBe = new Cplx() { Re = 1, Imaginari = -1 };
-            actual = a.Add(b);
-            Assert.AreEqual(shouldBe, actual);
-        }
-
-        [TestMethod()]
         public void AddTestPolynome()
         {
             Poly poly = new Mathematics.Poly();
@@ -95,6 +61,58 @@ namespace NNPTPZ1.Mathematics.Tests
             };
 
             Assert.AreEqual("(0 + 0i)", zero.ToString());
+        }
+        
+        [TestMethod()]
+        public void Add_TwoComplexNumbers_ReturnsSum()
+        {
+            Cplx firstNumber = new Cplx()
+            {
+                Re = 10,
+                Imaginari = 20
+            };
+
+            Cplx secondNumber = new Cplx()
+            {
+                Re = 1,
+                Imaginari = 2
+            };
+
+            Cplx expected = new Cplx()
+            {
+                Re = 11,
+                Imaginari = 22
+            };
+
+            Cplx actual = firstNumber.Add(secondNumber);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void Add_Zero_ReturnsOriginalNumber()
+        {
+            Cplx number = new Cplx()
+            {
+                Re = 1,
+                Imaginari = -1
+            };
+
+            Cplx zero = new Cplx()
+            {
+                Re = 0,
+                Imaginari = 0
+            };
+
+            Cplx expected = new Cplx()
+            {
+                Re = 1,
+                Imaginari = -1
+            };
+
+            Cplx actual = number.Add(zero);
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }
