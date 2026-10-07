@@ -34,7 +34,6 @@ namespace NNPTPZ1
             p.Coe.Add(Cplx.Zero);
             //p.Coe.Add(Cplx.Zero);
             p.Coe.Add(new Cplx() { Re = 1 });
-            Poly ptmp = p;
             Poly pd = p.Derive();
 
             Console.WriteLine(p);
