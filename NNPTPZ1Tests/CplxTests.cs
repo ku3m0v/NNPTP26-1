@@ -12,16 +12,6 @@ namespace NNPTPZ1.Mathematics.Tests
     [TestClass()]
     public class CplxTests
     {
-
-        [TestMethod()]
-        public void AddTestPolynome()
-        {
-            Poly polynomial = CreateTestPolynomial();
-            Cplx result = polynomial.Eval(new Cplx() { Re = 2, Imaginari = 0 });
-            var expected = new Cplx() { Re = 5.0000000000, Imaginari = 0 };
-            Assert.AreEqual(expected, result);
-        }
-        
         [TestMethod()]
         public void ToString_ComplexNumber_ReturnsExpectedFormat()
         {
@@ -138,6 +128,19 @@ namespace NNPTPZ1.Mathematics.Tests
             Assert.AreEqual(expected, actual);
         }
         
+        [TestMethod()]
+        public void Eval_AtTwo_ReturnsFive()
+        {
+            Poly polynomial = CreateTestPolynomial();
+
+            Cplx input = new Cplx() { Re = 2, Imaginari = 0 };
+            Cplx expected = new Cplx() { Re = 5, Imaginari = 0 };
+
+            Cplx actual = polynomial.Eval(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+        
         private Poly CreateTestPolynomial()
         {
             Poly polynomial = new Poly();
@@ -149,5 +152,3 @@ namespace NNPTPZ1.Mathematics.Tests
         }
     }
 }
-
-
