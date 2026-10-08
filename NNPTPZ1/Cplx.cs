@@ -25,7 +25,6 @@ namespace NNPTPZ1.Mathematics
 
         public Cplx Multiply(Cplx other)
         {
-            // aRe*bRe + aRe*bIm*i + aIm*bRe*i + aIm*bIm*i*i
             return new Cplx()
             {
                 Re = Re * other.Re - Imaginari * other.Imaginari,
@@ -65,9 +64,6 @@ namespace NNPTPZ1.Mathematics
 
         internal Cplx Divide(Cplx other)
         {
-            // (aRe + aIm*i) / (bRe + bIm*i)
-            // ((aRe + aIm*i) * (bRe - bIm*i)) / ((bRe + bIm*i) * (bRe - bIm*i))
-            //  bRe*bRe - bIm*bIm*i*i
             var numerator = Multiply(new Cplx() { Re = other.Re, Imaginari = -other.Imaginari });
             var denominator = other.Re * other.Re + other.Imaginari * other.Imaginari;
 
