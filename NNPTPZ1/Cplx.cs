@@ -31,7 +31,7 @@ namespace NNPTPZ1.Mathematics
                 Imaginari = (float)(Re * other.Imaginari + Imaginari * other.Re)
             };
         }
-        public double GetAbS()
+        public double GetAbs()
         {
             return Math.Sqrt( Re * Re + Imaginari * Imaginari);
         }
