@@ -68,13 +68,13 @@ namespace NNPTPZ1.Mathematics
             // (aRe + aIm*i) / (bRe + bIm*i)
             // ((aRe + aIm*i) * (bRe - bIm*i)) / ((bRe + bIm*i) * (bRe - bIm*i))
             //  bRe*bRe - bIm*bIm*i*i
-            var tmp = this.Multiply(new Cplx() { Re = b.Re, Imaginari = -b.Imaginari });
-            var tmp2 = b.Re * b.Re + b.Imaginari * b.Imaginari;
+            var numerator = Multiply(new Cplx() { Re = b.Re, Imaginari = -b.Imaginari });
+            var denominator = b.Re * b.Re + b.Imaginari * b.Imaginari;
 
             return new Cplx()
             {
-                Re = tmp.Re / tmp2,
-                Imaginari = (float)(tmp.Imaginari / tmp2)
+                Re = numerator.Re / denominator,
+                Imaginari = (float)(numerator.Imaginari / denominator)
             };
         }
     }
