@@ -25,12 +25,11 @@ namespace NNPTPZ1.Mathematics
 
         public Cplx Multiply(Cplx b)
         {
-            Cplx a = this;
             // aRe*bRe + aRe*bIm*i + aIm*bRe*i + aIm*bIm*i*i
             return new Cplx()
             {
-                Re = a.Re * b.Re - a.Imaginari * b.Imaginari,
-                Imaginari = (float)(a.Re * b.Imaginari + a.Imaginari * b.Re)
+                Re = Re * b.Re - Imaginari * b.Imaginari,
+                Imaginari = (float)(Re * b.Imaginari + Imaginari * b.Re)
             };
         }
         public double GetAbS()
@@ -40,11 +39,10 @@ namespace NNPTPZ1.Mathematics
 
         public Cplx Add(Cplx b)
         {
-            Cplx a = this;
             return new Cplx()
             {
-                Re = a.Re + b.Re,
-                Imaginari = a.Imaginari + b.Imaginari
+                Re = Re + b.Re,
+                Imaginari = Imaginari + b.Imaginari
             };
         }
         public double GetAngleInDegrees()
@@ -53,11 +51,10 @@ namespace NNPTPZ1.Mathematics
         }
         public Cplx Subtract(Cplx b)
         {
-            Cplx a = this;
             return new Cplx()
             {
-                Re = a.Re - b.Re,
-                Imaginari = a.Imaginari - b.Imaginari
+                Re = Re - b.Re,
+                Imaginari = Imaginari - b.Imaginari
             };
         }
 
