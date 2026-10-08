@@ -9,12 +9,12 @@ namespace NNPTPZ1.Mathematics
 
         public override bool Equals(object obj)
         {
-            if (obj is Cplx)
+            if (obj is Cplx other)
             {
-                Cplx x = obj as Cplx;
-                return x.Re == Re && x.Imaginari == Imaginari;
+                return other.Re == Re && other.Imaginari == Imaginari;
             }
-            return base.Equals(obj);
+
+            return false;
         }
 
         public readonly static Cplx Zero = new Cplx()
