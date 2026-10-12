@@ -55,52 +55,8 @@ namespace NNPTPZ1
                     double y = yMin + i * yStep;
                     double x = xMin + j * xStep;
 
-                    Cplx approximation = new Cplx()
-                    {
-                        Re = x,
-                        Imaginari = (float)(y)
-                    };
+                    Color pixelColor = CalculatePixelColor(x, y, polynomial, derivative, roots, colors);
 
-                    if (approximation.Re == 0)
-                        approximation.Re = CoordinateEpsilon;
-                    if (approximation.Imaginari == 0)
-                        approximation.Imaginari = (float)CoordinateEpsilon;
-
-                    // find solution of equation using newton's iteration
-                    float iterationCount = 0;
-                    for (int q = 0; q< RequiredNewtonIterations; q++)
-                    {
-                        var correction = polynomial.Evaluate(approximation).Divide(derivative.Evaluate(approximation));
-                        approximation = approximation.Subtract(correction);
-
-                        if (Math.Pow(correction.Re, 2) + Math.Pow(correction.Imaginari, 2) >= NewtonCorrectionThreshold)
-                        {
-                            q--;
-                        }
-                        iterationCount++;
-                    }
-
-                    // find solution root number
-                    var rootFound = false;
-                    var rootId = 0;
-                    for (int rootIndex = 0; rootIndex <roots.Count;rootIndex++)
-                    {
-                        if (Math.Pow(approximation.Re- roots[rootIndex].Re, 2) + Math.Pow(approximation.Imaginari - roots[rootIndex].Imaginari, 2) <= RootMatchThreshold)
-                        {
-                            rootFound = true;
-                            rootId = rootIndex;
-                        }
-                    }
-                    if (!rootFound)
-                    {
-                        roots.Add(approximation);
-                        rootId = roots.Count;
-                    }
-
-                    // colorize pixel according to root number
-                    var pixelColor = colors[rootId % colors.Length];
-                    pixelColor = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
-                    pixelColor = Color.FromArgb(Math.Min(Math.Max(0, pixelColor.R-(int)iterationCount*ColorDarkeningPerIteration), 255), Math.Min(Math.Max(0, pixelColor.G - (int)iterationCount*ColorDarkeningPerIteration), 255), Math.Min(Math.Max(0, pixelColor.B - (int)iterationCount*ColorDarkeningPerIteration), 255));
                     bmp.SetPixel(j, i, pixelColor);
                 }
             } 
@@ -117,6 +73,63 @@ namespace NNPTPZ1
             polynomial.Coefficients.Add(new Cplx() { Re = 1 });
 
             return polynomial;
+        }
+        
+        private static Color CalculatePixelColor(double x, double y, Poly polynomial, Poly derivative, List<Cplx> roots, Color[] colors)
+        {
+            Cplx approximation = new Cplx()
+            {
+                Re = x,
+                Imaginari = (float)y
+            };
+
+            if (approximation.Re == 0)
+                approximation.Re = CoordinateEpsilon;
+            if (approximation.Imaginari == 0)
+                approximation.Imaginari = (float)CoordinateEpsilon;
+
+            // find solution of equation using newton's iteration
+            float iterationCount = 0;
+            for (int q = 0; q < RequiredNewtonIterations; q++)
+            {
+                var correction = polynomial.Evaluate(approximation).Divide(derivative.Evaluate(approximation));
+                approximation = approximation.Subtract(correction);
+
+                if (Math.Pow(correction.Re, 2) + Math.Pow(correction.Imaginari, 2) >= NewtonCorrectionThreshold)
+                {
+                    q--;
+                }
+
+                iterationCount++;
+            }
+
+            // find solution root number
+            var rootFound = false;
+            var rootId = 0;
+            for (int rootIndex = 0; rootIndex < roots.Count; rootIndex++)
+            {
+                if (Math.Pow(approximation.Re - roots[rootIndex].Re, 2) + Math.Pow(approximation.Imaginari - roots[rootIndex].Imaginari, 2) <= RootMatchThreshold)
+                {
+                    rootFound = true;
+                    rootId = rootIndex;
+                }
+            }
+
+            if (!rootFound)
+            {
+                roots.Add(approximation);
+                rootId = roots.Count;
+            }
+
+            // colorize pixel according to root number
+            var pixelColor = colors[rootId % colors.Length];
+            pixelColor = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+            pixelColor = Color.FromArgb(
+                Math.Min(Math.Max(0, pixelColor.R - (int)iterationCount * ColorDarkeningPerIteration), 255),
+                Math.Min(Math.Max(0, pixelColor.G - (int)iterationCount * ColorDarkeningPerIteration), 255),
+                Math.Min(Math.Max(0, pixelColor.B - (int)iterationCount * ColorDarkeningPerIteration), 255));
+
+            return pixelColor;
         }
     }
 }
