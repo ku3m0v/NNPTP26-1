@@ -33,7 +33,7 @@ namespace NNPTPZ1
             p.Coefficients.Add(Cplx.Zero);
             p.Coefficients.Add(Cplx.Zero);
             p.Coefficients.Add(new Cplx() { Re = 1 });
-            Poly pd = p.Derive();
+            Poly pd = p.Differentiate();
 
             Console.WriteLine(p);
             Console.WriteLine(pd);

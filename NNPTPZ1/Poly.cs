@@ -13,7 +13,7 @@ namespace NNPTPZ1.Mathematics
             /// Creates the derivative of this polynomial.
             /// </summary>
             /// <returns>A new polynomial representing the derivative.</returns>
-            public Poly Derive()
+            public Poly Differentiate()
             {
                 Poly derivative = new Poly();
                 for (int coefficientIndex = 1; coefficientIndex < Coefficients.Count; coefficientIndex++)
