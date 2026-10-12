@@ -58,9 +58,9 @@ namespace NNPTPZ1.Mathematics.Tests
         private Poly CreateTestPolynomial()
         {
             Poly polynomial = new Poly();
-            polynomial.Coe.Add(new Cplx() { Re = 1, Imaginari = 0 });
-            polynomial.Coe.Add(new Cplx() { Re = 0, Imaginari = 0 });
-            polynomial.Coe.Add(new Cplx() { Re = 1, Imaginari = 0 });
+            polynomial.Coefficients.Add(new Cplx() { Re = 1, Imaginari = 0 });
+            polynomial.Coefficients.Add(new Cplx() { Re = 0, Imaginari = 0 });
+            polynomial.Coefficients.Add(new Cplx() { Re = 1, Imaginari = 0 });
 
             return polynomial;
         }

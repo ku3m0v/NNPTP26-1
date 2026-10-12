@@ -4,12 +4,12 @@ namespace NNPTPZ1.Mathematics
 {
         public class Poly
         {
-            public List<Cplx> Coe { get; set; }
+            public List<Cplx> Coefficients { get; set; }
 
-            public Poly() => Coe = new List<Cplx>();
+            public Poly() => Coefficients = new List<Cplx>();
 
             public void Add(Cplx coefficient) =>
-                Coe.Add(coefficient);
+                Coefficients.Add(coefficient);
 
             /// <summary>
             /// Creates the derivative of this polynomial.
@@ -18,9 +18,9 @@ namespace NNPTPZ1.Mathematics
             public Poly Derive()
             {
                 Poly derivative = new Poly();
-                for (int coefficientIndex = 1; coefficientIndex < Coe.Count; coefficientIndex++)
+                for (int coefficientIndex = 1; coefficientIndex < Coefficients.Count; coefficientIndex++)
                 {
-                    derivative.Coe.Add(Coe[coefficientIndex].Multiply(new Cplx() { Re = coefficientIndex }));
+                    derivative.Coefficients.Add(Coefficients[coefficientIndex].Multiply(new Cplx() { Re = coefficientIndex }));
                 }
 
                 return derivative;
@@ -44,9 +44,9 @@ namespace NNPTPZ1.Mathematics
             public Cplx Eval(Cplx x)
             {
                 Cplx result = Cplx.Zero;
-                for (int i = 0; i < Coe.Count; i++)
+                for (int i = 0; i < Coefficients.Count; i++)
                 {
-                    Cplx coefficient = Coe[i];
+                    Cplx coefficient = Coefficients[i];
                     Cplx poweredValue = x;
                     int power = i;
 
@@ -68,9 +68,9 @@ namespace NNPTPZ1.Mathematics
             {
                 string result = "";
 
-                for (int i = 0; i < Coe.Count; i++)
+                for (int i = 0; i < Coefficients.Count; i++)
                 {
-                    result += Coe[i];
+                    result += Coefficients[i];
 
                     if (i > 0)
                     {
@@ -80,7 +80,7 @@ namespace NNPTPZ1.Mathematics
                         }
                     }
 
-                    if (i + 1 < Coe.Count)
+                    if (i + 1 < Coefficients.Count)
                     {
                         result += " + ";
                     }

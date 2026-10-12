@@ -29,10 +29,10 @@ namespace NNPTPZ1
             List<Cplx> koreny = new List<Cplx>();
             // TODO: poly should be parameterised?
             Poly p = new Poly();
-            p.Coe.Add(new Cplx() { Re = 1 });
-            p.Coe.Add(Cplx.Zero);
-            p.Coe.Add(Cplx.Zero);
-            p.Coe.Add(new Cplx() { Re = 1 });
+            p.Coefficients.Add(new Cplx() { Re = 1 });
+            p.Coefficients.Add(Cplx.Zero);
+            p.Coefficients.Add(Cplx.Zero);
+            p.Coefficients.Add(new Cplx() { Re = 1 });
             Poly pd = p.Derive();
 
             Console.WriteLine(p);
