@@ -11,6 +11,12 @@ namespace NNPTPZ1
     /// </summary>
     class Program
     {
+        private const double CoordinateEpsilon = 0.0001;
+        private const int RequiredNewtonIterations = 30;
+        private const double NewtonCorrectionThreshold = 0.5;
+        private const double RootMatchThreshold = 0.01;
+        private const int ColorDarkeningPerIteration = 2;
+        
         static void Main(string[] args)
         {
             int width = int.Parse(args[0]);
@@ -60,18 +66,18 @@ namespace NNPTPZ1
                     };
 
                     if (approximation.Re == 0)
-                        approximation.Re = 0.0001;
+                        approximation.Re = CoordinateEpsilon;
                     if (approximation.Imaginari == 0)
-                        approximation.Imaginari = 0.0001f;
+                        approximation.Imaginari = (float)CoordinateEpsilon;
 
                     // find solution of equation using newton's iteration
                     float iterationCount = 0;
-                    for (int q = 0; q< 30; q++)
+                    for (int q = 0; q< RequiredNewtonIterations; q++)
                     {
                         var correction = polynomial.Evaluate(approximation).Divide(derivative.Evaluate(approximation));
                         approximation = approximation.Subtract(correction);
 
-                        if (Math.Pow(correction.Re, 2) + Math.Pow(correction.Imaginari, 2) >= 0.5)
+                        if (Math.Pow(correction.Re, 2) + Math.Pow(correction.Imaginari, 2) >= NewtonCorrectionThreshold)
                         {
                             q--;
                         }
@@ -83,7 +89,7 @@ namespace NNPTPZ1
                     var rootId = 0;
                     for (int rootIndex = 0; rootIndex <roots.Count;rootIndex++)
                     {
-                        if (Math.Pow(approximation.Re- roots[rootIndex].Re, 2) + Math.Pow(approximation.Imaginari - roots[rootIndex].Imaginari, 2) <= 0.01)
+                        if (Math.Pow(approximation.Re- roots[rootIndex].Re, 2) + Math.Pow(approximation.Imaginari - roots[rootIndex].Imaginari, 2) <= RootMatchThreshold)
                         {
                             rootFound = true;
                             rootId = rootIndex;
@@ -98,7 +104,7 @@ namespace NNPTPZ1
                     // colorize pixel according to root number
                     var pixelColor = colors[rootId % colors.Length];
                     pixelColor = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
-                    pixelColor = Color.FromArgb(Math.Min(Math.Max(0, pixelColor.R-(int)iterationCount*2), 255), Math.Min(Math.Max(0, pixelColor.G - (int)iterationCount*2), 255), Math.Min(Math.Max(0, pixelColor.B - (int)iterationCount*2), 255));
+                    pixelColor = Color.FromArgb(Math.Min(Math.Max(0, pixelColor.R-(int)iterationCount*ColorDarkeningPerIteration), 255), Math.Min(Math.Max(0, pixelColor.G - (int)iterationCount*ColorDarkeningPerIteration), 255), Math.Min(Math.Max(0, pixelColor.B - (int)iterationCount*ColorDarkeningPerIteration), 255));
                     bmp.SetPixel(j, i, pixelColor);
                 }
             } 
