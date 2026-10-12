@@ -4,9 +4,7 @@ namespace NNPTPZ1.Mathematics
 {
         public class Poly
         {
-            public List<Cplx> Coefficients { get; set; }
-
-            public Poly() => Coefficients = new List<Cplx>();
+            public List<Cplx> Coefficients { get; set; } = new List<Cplx>();
 
             public void Add(Cplx coefficient) =>
                 Coefficients.Add(coefficient);
