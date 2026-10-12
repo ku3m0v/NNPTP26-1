@@ -39,8 +39,7 @@ namespace NNPTPZ1.Mathematics
             /// <returns>y</returns>
             public Cplx Eval(double x)
             {
-                var y = Eval(new Cplx() { Re = x, Imaginari = 0 });
-                return y;
+                return Eval(new Cplx() { Re = x, Imaginari = 0 });
             }
 
             /// <summary>
