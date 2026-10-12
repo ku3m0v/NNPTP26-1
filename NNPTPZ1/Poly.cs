@@ -48,11 +48,10 @@ namespace NNPTPZ1.Mathematics
                 {
                     Cplx coefficient = Coefficients[i];
                     Cplx poweredValue = x;
-                    int power = i;
 
                     if (i > 0)
                     {
-                        for (int j = 0; j < power - 1; j++)
+                        for (int j = 0; j < i - 1; j++)
                             poweredValue = poweredValue.Multiply(x);
 
                         coefficient = coefficient.Multiply(poweredValue);
