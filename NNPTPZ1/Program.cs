@@ -53,53 +53,53 @@ namespace NNPTPZ1
                     double y = yMin + i * yStep;
                     double x = xMin + j * xStep;
 
-                    Cplx ox = new Cplx()
+                    Cplx approximation = new Cplx()
                     {
                         Re = x,
                         Imaginari = (float)(y)
                     };
 
-                    if (ox.Re == 0)
-                        ox.Re = 0.0001;
-                    if (ox.Imaginari == 0)
-                        ox.Imaginari = 0.0001f;
+                    if (approximation.Re == 0)
+                        approximation.Re = 0.0001;
+                    if (approximation.Imaginari == 0)
+                        approximation.Imaginari = 0.0001f;
 
                     // find solution of equation using newton's iteration
-                    float it = 0;
+                    float iterationCount = 0;
                     for (int q = 0; q< 30; q++)
                     {
-                        var diff = polynomial.Evaluate(ox).Divide(derivative.Evaluate(ox));
-                        ox = ox.Subtract(diff);
+                        var correction = polynomial.Evaluate(approximation).Divide(derivative.Evaluate(approximation));
+                        approximation = approximation.Subtract(correction);
 
-                        if (Math.Pow(diff.Re, 2) + Math.Pow(diff.Imaginari, 2) >= 0.5)
+                        if (Math.Pow(correction.Re, 2) + Math.Pow(correction.Imaginari, 2) >= 0.5)
                         {
                             q--;
                         }
-                        it++;
+                        iterationCount++;
                     }
 
                     // find solution root number
-                    var known = false;
-                    var id = 0;
-                    for (int w = 0; w <roots.Count;w++)
+                    var rootFound = false;
+                    var rootId = 0;
+                    for (int rootIndex = 0; rootIndex <roots.Count;rootIndex++)
                     {
-                        if (Math.Pow(ox.Re- roots[w].Re, 2) + Math.Pow(ox.Imaginari - roots[w].Imaginari, 2) <= 0.01)
+                        if (Math.Pow(approximation.Re- roots[rootIndex].Re, 2) + Math.Pow(approximation.Imaginari - roots[rootIndex].Imaginari, 2) <= 0.01)
                         {
-                            known = true;
-                            id = w;
+                            rootFound = true;
+                            rootId = rootIndex;
                         }
                     }
-                    if (!known)
+                    if (!rootFound)
                     {
-                        roots.Add(ox);
-                        id = roots.Count;
+                        roots.Add(approximation);
+                        rootId = roots.Count;
                     }
 
                     // colorize pixel according to root number
-                    var vv = colors[id % colors.Length];
-                    vv = Color.FromArgb(vv.R, vv.G, vv.B);
-                    vv = Color.FromArgb(Math.Min(Math.Max(0, vv.R-(int)it*2), 255), Math.Min(Math.Max(0, vv.G - (int)it*2), 255), Math.Min(Math.Max(0, vv.B - (int)it*2), 255));
-                    bmp.SetPixel(j, i, vv);
+                    var pixelColor = colors[rootId % colors.Length];
+                    pixelColor = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                    pixelColor = Color.FromArgb(Math.Min(Math.Max(0, pixelColor.R-(int)iterationCount*2), 255), Math.Min(Math.Max(0, pixelColor.G - (int)iterationCount*2), 255), Math.Min(Math.Max(0, pixelColor.B - (int)iterationCount*2), 255));
+                    bmp.SetPixel(j, i, pixelColor);
                 }
             } 
             
