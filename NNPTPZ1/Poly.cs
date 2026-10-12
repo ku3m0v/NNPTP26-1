@@ -8,8 +8,8 @@ namespace NNPTPZ1.Mathematics
 
             public Poly() => Coe = new List<Cplx>();
 
-            public void Add(Cplx coe) =>
-                Coe.Add(coe);
+            public void Add(Cplx coefficient) =>
+                Coe.Add(coefficient);
 
             /// <summary>
             /// Derives this polynomial and creates new one
