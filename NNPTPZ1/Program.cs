@@ -22,7 +22,7 @@ namespace NNPTPZ1
             int width = int.Parse(args[0]);
             int height = int.Parse(args[1]);
             string output = args[6];
-            // TODO: add parameters from args?
+
             Bitmap bmp = new Bitmap(width, height);
             double xMin = double.Parse(args[2]);
             double xMax = double.Parse(args[3]);
@@ -33,7 +33,7 @@ namespace NNPTPZ1
             double yStep = (yMax - yMin) / height;
 
             List<Cplx> roots = new List<Cplx>();
-            // TODO: poly should be parameterised?
+
             Poly polynomial = CreatePolynomial();
             Poly derivative = polynomial.Differentiate();
 
@@ -44,9 +44,7 @@ namespace NNPTPZ1
             {
                 Color.Red, Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Fuchsia, Color.Gold, Color.Cyan, Color.Magenta
             };
-
-            // TODO: cleanup!!!
-            // for every pixel in image...
+            
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
@@ -66,6 +64,7 @@ namespace NNPTPZ1
         
         private static Poly CreatePolynomial()
         {
+            // TODO: poly should be parameterised?
             Poly polynomial = new Poly();
             polynomial.Coefficients.Add(new Cplx() { Re = 1 });
             polynomial.Coefficients.Add(Cplx.Zero);
