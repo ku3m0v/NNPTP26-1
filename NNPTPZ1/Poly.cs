@@ -12,9 +12,9 @@ namespace NNPTPZ1.Mathematics
                 Coe.Add(coefficient);
 
             /// <summary>
-            /// Derives this polynomial and creates new one
+            /// Creates the derivative of this polynomial.
             /// </summary>
-            /// <returns>Derivated polynomial</returns>
+            /// <returns>A new polynomial representing the derivative.</returns>
             public Poly Derive()
             {
                 Poly derivative = new Poly();
@@ -27,20 +27,20 @@ namespace NNPTPZ1.Mathematics
             }
 
             /// <summary>
-            /// Evaluates polynomial at given point
+            /// Evaluates the polynomial at a real value.
             /// </summary>
-            /// <param name="x">point of evaluation</param>
-            /// <returns>y</returns>
+            /// <param name="x">The real value at which to evaluate the polynomial.</param>
+            /// <returns>The polynomial value represented as a complex number.</returns>
             public Cplx Eval(double x)
             {
                 return Eval(new Cplx() { Re = x, Imaginari = 0 });
             }
 
             /// <summary>
-            /// Evaluates polynomial at given point
+            /// Evaluates the polynomial at a complex value.
             /// </summary>
-            /// <param name="x">point of evaluation</param>
-            /// <returns>y</returns>
+            /// <param name="x">The complex value at which to evaluate the polynomial.</param>
+            /// <returns>The resulting complex value of the polynomial.</returns>
             public Cplx Eval(Cplx x)
             {
                 Cplx result = Cplx.Zero;
