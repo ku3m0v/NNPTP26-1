@@ -4,14 +4,8 @@ namespace NNPTPZ1.Mathematics
 {
         public class Poly
         {
-            /// <summary>
-            /// Coe
-            /// </summary>
             public List<Cplx> Coe { get; set; }
 
-            /// <summary>
-            /// Constructor
-            /// </summary>
             public Poly() => Coe = new List<Cplx>();
 
             public void Add(Cplx coe) =>
@@ -70,10 +64,6 @@ namespace NNPTPZ1.Mathematics
                 return result;
             }
 
-            /// <summary>
-            /// ToString
-            /// </summary>
-            /// <returns>String repr of polynomial</returns>
             public override string ToString()
             {
                 string result = "";
