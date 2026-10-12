@@ -34,11 +34,7 @@ namespace NNPTPZ1
 
             List<Cplx> roots = new List<Cplx>();
             // TODO: poly should be parameterised?
-            Poly polynomial = new Poly();
-            polynomial.Coefficients.Add(new Cplx() { Re = 1 });
-            polynomial.Coefficients.Add(Cplx.Zero);
-            polynomial.Coefficients.Add(Cplx.Zero);
-            polynomial.Coefficients.Add(new Cplx() { Re = 1 });
+            Poly polynomial = CreatePolynomial();
             Poly derivative = polynomial.Differentiate();
 
             Console.WriteLine(polynomial);
@@ -110,6 +106,17 @@ namespace NNPTPZ1
             } 
             
             bmp.Save(output ?? "../../../out.png");
+        }
+        
+        private static Poly CreatePolynomial()
+        {
+            Poly polynomial = new Poly();
+            polynomial.Coefficients.Add(new Cplx() { Re = 1 });
+            polynomial.Coefficients.Add(Cplx.Zero);
+            polynomial.Coefficients.Add(Cplx.Zero);
+            polynomial.Coefficients.Add(new Cplx() { Re = 1 });
+
+            return polynomial;
         }
     }
 }
