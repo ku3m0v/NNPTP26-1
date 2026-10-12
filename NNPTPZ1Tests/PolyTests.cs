@@ -17,7 +17,7 @@ namespace NNPTPZ1.Mathematics.Tests
         }
         
         [TestMethod()]
-        public void Eval_AtZero_ReturnsOne()
+        public void Evaluate_AtZero_ReturnsOne()
         {
             Poly polynomial = CreateTestPolynomial();
 
@@ -30,7 +30,7 @@ namespace NNPTPZ1.Mathematics.Tests
         }
         
         [TestMethod()]
-        public void Eval_AtOne_ReturnsTwo()
+        public void Evaluate_AtOne_ReturnsTwo()
         {
             Poly polynomial = CreateTestPolynomial();
 
@@ -43,7 +43,7 @@ namespace NNPTPZ1.Mathematics.Tests
         }
         
         [TestMethod()]
-        public void Eval_AtTwo_ReturnsFive()
+        public void Evaluate_AtTwo_ReturnsFive()
         {
             Poly polynomial = CreateTestPolynomial();
 
