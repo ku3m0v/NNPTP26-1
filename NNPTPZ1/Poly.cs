@@ -76,23 +76,27 @@ namespace NNPTPZ1.Mathematics
             /// <returns>String repr of polynomial</returns>
             public override string ToString()
             {
-                string s = "";
-                int i = 0;
-                for (; i < Coe.Count; i++)
+                string result = "";
+
+                for (int i = 0; i < Coe.Count; i++)
                 {
-                    s += Coe[i];
+                    result += Coe[i];
+
                     if (i > 0)
                     {
-                        int j = 0;
-                        for (; j < i; j++)
+                        for (int j = 0; j < i; j++)
                         {
-                            s += "x";
+                            result += "x";
                         }
                     }
-                    if (i+1<Coe.Count)
-                    s += " + ";
+
+                    if (i + 1 < Coe.Count)
+                    {
+                        result += " + ";
+                    }
                 }
-                return s;
+
+                return result;
             }
         }
     }
