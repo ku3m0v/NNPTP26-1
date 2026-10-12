@@ -50,25 +50,25 @@ namespace NNPTPZ1.Mathematics
             /// <returns>y</returns>
             public Cplx Eval(Cplx x)
             {
-                Cplx s = Cplx.Zero;
+                Cplx result = Cplx.Zero;
                 for (int i = 0; i < Coe.Count; i++)
                 {
-                    Cplx coef = Coe[i];
-                    Cplx bx = x;
+                    Cplx coefficient = Coe[i];
+                    Cplx poweredValue = x;
                     int power = i;
 
                     if (i > 0)
                     {
                         for (int j = 0; j < power - 1; j++)
-                            bx = bx.Multiply(x);
+                            poweredValue = poweredValue.Multiply(x);
 
-                        coef = coef.Multiply(bx);
+                        coefficient = coefficient.Multiply(poweredValue);
                     }
 
-                    s = s.Add(coef);
+                    result = result.Add(coefficient);
                 }
 
-                return s;
+                return result;
             }
 
             /// <summary>
