@@ -23,13 +23,13 @@ namespace NNPTPZ1.Mathematics
             /// <returns>Derivated polynomial</returns>
             public Poly Derive()
             {
-                Poly p = new Poly();
-                for (int q = 1; q < Coe.Count; q++)
+                Poly derivative = new Poly();
+                for (int coefficientIndex = 1; coefficientIndex < Coe.Count; coefficientIndex++)
                 {
-                    p.Coe.Add(Coe[q].Multiply(new Cplx() { Re = q }));
+                    derivative.Coe.Add(Coe[coefficientIndex].Multiply(new Cplx() { Re = coefficientIndex }));
                 }
 
-                return p;
+                return derivative;
             }
 
             /// <summary>
