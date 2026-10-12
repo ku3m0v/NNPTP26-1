@@ -26,19 +26,19 @@ namespace NNPTPZ1
             double xStep = (xMax - xMin) / width;
             double yStep = (yMax - yMin) / height;
 
-            List<Cplx> koreny = new List<Cplx>();
+            List<Cplx> roots = new List<Cplx>();
             // TODO: poly should be parameterised?
-            Poly p = new Poly();
-            p.Coefficients.Add(new Cplx() { Re = 1 });
-            p.Coefficients.Add(Cplx.Zero);
-            p.Coefficients.Add(Cplx.Zero);
-            p.Coefficients.Add(new Cplx() { Re = 1 });
-            Poly pd = p.Differentiate();
+            Poly polynomial = new Poly();
+            polynomial.Coefficients.Add(new Cplx() { Re = 1 });
+            polynomial.Coefficients.Add(Cplx.Zero);
+            polynomial.Coefficients.Add(Cplx.Zero);
+            polynomial.Coefficients.Add(new Cplx() { Re = 1 });
+            Poly derivative = polynomial.Differentiate();
 
-            Console.WriteLine(p);
-            Console.WriteLine(pd);
+            Console.WriteLine(polynomial);
+            Console.WriteLine(derivative);
 
-            var clrs = new Color[]
+            var colors = new Color[]
             {
                 Color.Red, Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Fuchsia, Color.Gold, Color.Cyan, Color.Magenta
             };
@@ -68,7 +68,7 @@ namespace NNPTPZ1
                     float it = 0;
                     for (int q = 0; q< 30; q++)
                     {
-                        var diff = p.Evaluate(ox).Divide(pd.Evaluate(ox));
+                        var diff = polynomial.Evaluate(ox).Divide(derivative.Evaluate(ox));
                         ox = ox.Subtract(diff);
 
                         if (Math.Pow(diff.Re, 2) + Math.Pow(diff.Imaginari, 2) >= 0.5)
@@ -81,9 +81,9 @@ namespace NNPTPZ1
                     // find solution root number
                     var known = false;
                     var id = 0;
-                    for (int w = 0; w <koreny.Count;w++)
+                    for (int w = 0; w <roots.Count;w++)
                     {
-                        if (Math.Pow(ox.Re- koreny[w].Re, 2) + Math.Pow(ox.Imaginari - koreny[w].Imaginari, 2) <= 0.01)
+                        if (Math.Pow(ox.Re- roots[w].Re, 2) + Math.Pow(ox.Imaginari - roots[w].Imaginari, 2) <= 0.01)
                         {
                             known = true;
                             id = w;
@@ -91,12 +91,12 @@ namespace NNPTPZ1
                     }
                     if (!known)
                     {
-                        koreny.Add(ox);
-                        id = koreny.Count;
+                        roots.Add(ox);
+                        id = roots.Count;
                     }
 
                     // colorize pixel according to root number
-                    var vv = clrs[id % clrs.Length];
+                    var vv = colors[id % colors.Length];
                     vv = Color.FromArgb(vv.R, vv.G, vv.B);
                     vv = Color.FromArgb(Math.Min(Math.Max(0, vv.R-(int)it*2), 255), Math.Min(Math.Max(0, vv.G - (int)it*2), 255), Math.Min(Math.Max(0, vv.B - (int)it*2), 255));
                     bmp.SetPixel(j, i, vv);
