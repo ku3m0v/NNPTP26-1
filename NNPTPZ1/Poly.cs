@@ -31,9 +31,9 @@ namespace NNPTPZ1.Mathematics
             /// </summary>
             /// <param name="x">The real value at which to evaluate the polynomial.</param>
             /// <returns>The polynomial value represented as a complex number.</returns>
-            public Cplx Eval(double x)
+            public Cplx Evaluate(double x)
             {
-                return Eval(new Cplx() { Re = x, Imaginari = 0 });
+                return Evaluate(new Cplx() { Re = x, Imaginari = 0 });
             }
 
             /// <summary>
@@ -41,7 +41,7 @@ namespace NNPTPZ1.Mathematics
             /// </summary>
             /// <param name="x">The complex value at which to evaluate the polynomial.</param>
             /// <returns>The resulting complex value of the polynomial.</returns>
-            public Cplx Eval(Cplx x)
+            public Cplx Evaluate(Cplx x)
             {
                 Cplx result = Cplx.Zero;
                 for (int i = 0; i < Coefficients.Count; i++)

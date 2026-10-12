@@ -24,7 +24,7 @@ namespace NNPTPZ1.Mathematics.Tests
             Cplx input = new Cplx() { Re = 0, Imaginari = 0 };
             Cplx expected = new Cplx() { Re = 1, Imaginari = 0 };
 
-            Cplx actual = polynomial.Eval(input);
+            Cplx actual = polynomial.Evaluate(input);
 
             Assert.AreEqual(expected, actual);
         }
@@ -37,7 +37,7 @@ namespace NNPTPZ1.Mathematics.Tests
             Cplx input = new Cplx() { Re = 1, Imaginari = 0 };
             Cplx expected = new Cplx() { Re = 2, Imaginari = 0 };
 
-            Cplx actual = polynomial.Eval(input);
+            Cplx actual = polynomial.Evaluate(input);
 
             Assert.AreEqual(expected, actual);
         }
@@ -50,7 +50,7 @@ namespace NNPTPZ1.Mathematics.Tests
             Cplx input = new Cplx() { Re = 2, Imaginari = 0 };
             Cplx expected = new Cplx() { Re = 5, Imaginari = 0 };
 
-            Cplx actual = polynomial.Eval(input);
+            Cplx actual = polynomial.Evaluate(input);
 
             Assert.AreEqual(expected, actual);
         }

@@ -68,7 +68,7 @@ namespace NNPTPZ1
                     float it = 0;
                     for (int q = 0; q< 30; q++)
                     {
-                        var diff = p.Eval(ox).Divide(pd.Eval(ox));
+                        var diff = p.Evaluate(ox).Divide(pd.Evaluate(ox));
                         ox = ox.Subtract(diff);
 
                         if (Math.Pow(diff.Re, 2) + Math.Pow(diff.Imaginari, 2) >= 0.5)
