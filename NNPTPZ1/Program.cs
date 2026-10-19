@@ -85,22 +85,7 @@ namespace NNPTPZ1
                 out iterationCount);
 
             // find solution root number
-            var rootFound = false;
-            var rootId = 0;
-            for (int rootIndex = 0; rootIndex < roots.Count; rootIndex++)
-            {
-                if (Math.Pow(approximation.Real - roots[rootIndex].Real, 2) + Math.Pow(approximation.Imaginary - roots[rootIndex].Imaginary, 2) <= RootMatchThreshold)
-                {
-                    rootFound = true;
-                    rootId = rootIndex;
-                }
-            }
-
-            if (!rootFound)
-            {
-                roots.Add(approximation);
-                rootId = roots.Count;
-            }
+            int rootId = FindOrAddRootId(approximation, roots);
 
             // colorize pixel according to root number
             var pixelColor = colors[rootId % colors.Length];
@@ -146,6 +131,29 @@ namespace NNPTPZ1
             }
 
             return approximation;
+        }
+        
+        private static int FindOrAddRootId(ComplexNumber approximation, List<ComplexNumber> roots)
+        {
+            var rootFound = false;
+            var rootId = 0;
+
+            for (int rootIndex = 0; rootIndex < roots.Count; rootIndex++)
+            {
+                if (Math.Pow(approximation.Real - roots[rootIndex].Real, 2) + Math.Pow(approximation.Imaginary - roots[rootIndex].Imaginary, 2) <= RootMatchThreshold)
+                {
+                    rootFound = true;
+                    rootId = rootIndex;
+                }
+            }
+
+            if (!rootFound)
+            {
+                roots.Add(approximation);
+                rootId = roots.Count;
+            }
+
+            return rootId;
         }
     }
 }
