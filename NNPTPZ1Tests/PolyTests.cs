@@ -21,8 +21,8 @@ namespace NNPTPZ1.Mathematics.Tests
         {
             Poly polynomial = CreateTestPolynomial();
 
-            Cplx input = new Cplx() { Re = 0, Imaginari = 0 };
-            Cplx expected = new Cplx() { Re = 1, Imaginari = 0 };
+            Cplx input = new Cplx() { Real = 0, Imaginary = 0 };
+            Cplx expected = new Cplx() { Real = 1, Imaginary = 0 };
 
             Cplx actual = polynomial.Evaluate(input);
 
@@ -34,8 +34,8 @@ namespace NNPTPZ1.Mathematics.Tests
         {
             Poly polynomial = CreateTestPolynomial();
 
-            Cplx input = new Cplx() { Re = 1, Imaginari = 0 };
-            Cplx expected = new Cplx() { Re = 2, Imaginari = 0 };
+            Cplx input = new Cplx() { Real = 1, Imaginary = 0 };
+            Cplx expected = new Cplx() { Real = 2, Imaginary = 0 };
 
             Cplx actual = polynomial.Evaluate(input);
 
@@ -47,8 +47,8 @@ namespace NNPTPZ1.Mathematics.Tests
         {
             Poly polynomial = CreateTestPolynomial();
 
-            Cplx input = new Cplx() { Re = 2, Imaginari = 0 };
-            Cplx expected = new Cplx() { Re = 5, Imaginari = 0 };
+            Cplx input = new Cplx() { Real = 2, Imaginary = 0 };
+            Cplx expected = new Cplx() { Real = 5, Imaginary = 0 };
 
             Cplx actual = polynomial.Evaluate(input);
 
@@ -58,9 +58,9 @@ namespace NNPTPZ1.Mathematics.Tests
         private Poly CreateTestPolynomial()
         {
             Poly polynomial = new Poly();
-            polynomial.Coefficients.Add(new Cplx() { Re = 1, Imaginari = 0 });
-            polynomial.Coefficients.Add(new Cplx() { Re = 0, Imaginari = 0 });
-            polynomial.Coefficients.Add(new Cplx() { Re = 1, Imaginari = 0 });
+            polynomial.Coefficients.Add(new Cplx() { Real = 1, Imaginary = 0 });
+            polynomial.Coefficients.Add(new Cplx() { Real = 0, Imaginary = 0 });
+            polynomial.Coefficients.Add(new Cplx() { Real = 1, Imaginary = 0 });
 
             return polynomial;
         }

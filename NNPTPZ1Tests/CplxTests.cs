@@ -11,24 +11,24 @@ namespace NNPTPZ1.Mathematics.Tests
         {
             Cplx positiveComplexNumber = new Cplx()
             {
-                Re = 10,
-                Imaginari = 20
+                Real = 10,
+                Imaginary = 20
             };
 
             Assert.AreEqual("(10 + 20i)", positiveComplexNumber.ToString());
 
             Cplx negativeImaginaryNumber = new Cplx()
             {
-                Re = 1,
-                Imaginari = -1
+                Real = 1,
+                Imaginary = -1
             };
 
             Assert.AreEqual("(1 + -1i)", negativeImaginaryNumber.ToString());
 
             Cplx zero = new Cplx()
             {
-                Re = 0,
-                Imaginari = 0
+                Real = 0,
+                Imaginary = 0
             };
 
             Assert.AreEqual("(0 + 0i)", zero.ToString());
@@ -39,20 +39,20 @@ namespace NNPTPZ1.Mathematics.Tests
         {
             Cplx firstNumber = new Cplx()
             {
-                Re = 10,
-                Imaginari = 20
+                Real = 10,
+                Imaginary = 20
             };
 
             Cplx secondNumber = new Cplx()
             {
-                Re = 1,
-                Imaginari = 2
+                Real = 1,
+                Imaginary = 2
             };
 
             Cplx expected = new Cplx()
             {
-                Re = 11,
-                Imaginari = 22
+                Real = 11,
+                Imaginary = 22
             };
 
             Cplx actual = firstNumber.Add(secondNumber);
@@ -65,20 +65,20 @@ namespace NNPTPZ1.Mathematics.Tests
         {
             Cplx number = new Cplx()
             {
-                Re = 1,
-                Imaginari = -1
+                Real = 1,
+                Imaginary = -1
             };
 
             Cplx zero = new Cplx()
             {
-                Re = 0,
-                Imaginari = 0
+                Real = 0,
+                Imaginary = 0
             };
 
             Cplx expected = new Cplx()
             {
-                Re = 1,
-                Imaginari = -1
+                Real = 1,
+                Imaginary = -1
             };
 
             Cplx actual = number.Add(zero);

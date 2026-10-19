@@ -18,7 +18,7 @@ namespace NNPTPZ1.Mathematics
                 Poly derivative = new Poly();
                 for (int coefficientIndex = 1; coefficientIndex < Coefficients.Count; coefficientIndex++)
                 {
-                    derivative.Coefficients.Add(Coefficients[coefficientIndex].Multiply(new Cplx() { Re = coefficientIndex }));
+                    derivative.Coefficients.Add(Coefficients[coefficientIndex].Multiply(new Cplx() { Real = coefficientIndex }));
                 }
 
                 return derivative;
@@ -31,7 +31,7 @@ namespace NNPTPZ1.Mathematics
             /// <returns>The polynomial value represented as a complex number.</returns>
             public Cplx Evaluate(double x)
             {
-                return Evaluate(new Cplx() { Re = x, Imaginari = 0 });
+                return Evaluate(new Cplx() { Real = x, Imaginary = 0 });
             }
 
             /// <summary>

@@ -66,10 +66,10 @@ namespace NNPTPZ1
         {
             // TODO: poly should be parameterised?
             Poly polynomial = new Poly();
-            polynomial.Coefficients.Add(new Cplx() { Re = 1 });
+            polynomial.Coefficients.Add(new Cplx() { Real = 1 });
             polynomial.Coefficients.Add(Cplx.Zero);
             polynomial.Coefficients.Add(Cplx.Zero);
-            polynomial.Coefficients.Add(new Cplx() { Re = 1 });
+            polynomial.Coefficients.Add(new Cplx() { Real = 1 });
 
             return polynomial;
         }
@@ -78,14 +78,14 @@ namespace NNPTPZ1
         {
             Cplx approximation = new Cplx()
             {
-                Re = x,
-                Imaginari = (float)y
+                Real = x,
+                Imaginary = (float)y
             };
 
-            if (approximation.Re == 0)
-                approximation.Re = CoordinateEpsilon;
-            if (approximation.Imaginari == 0)
-                approximation.Imaginari = (float)CoordinateEpsilon;
+            if (approximation.Real == 0)
+                approximation.Real = CoordinateEpsilon;
+            if (approximation.Imaginary == 0)
+                approximation.Imaginary = (float)CoordinateEpsilon;
 
             // find solution of equation using newton's iteration
             float iterationCount = 0;
@@ -94,7 +94,7 @@ namespace NNPTPZ1
                 var correction = polynomial.Evaluate(approximation).Divide(derivative.Evaluate(approximation));
                 approximation = approximation.Subtract(correction);
 
-                if (Math.Pow(correction.Re, 2) + Math.Pow(correction.Imaginari, 2) >= NewtonCorrectionThreshold)
+                if (Math.Pow(correction.Real, 2) + Math.Pow(correction.Imaginary, 2) >= NewtonCorrectionThreshold)
                 {
                     q--;
                 }
@@ -107,7 +107,7 @@ namespace NNPTPZ1
             var rootId = 0;
             for (int rootIndex = 0; rootIndex < roots.Count; rootIndex++)
             {
-                if (Math.Pow(approximation.Re - roots[rootIndex].Re, 2) + Math.Pow(approximation.Imaginari - roots[rootIndex].Imaginari, 2) <= RootMatchThreshold)
+                if (Math.Pow(approximation.Real - roots[rootIndex].Real, 2) + Math.Pow(approximation.Imaginary - roots[rootIndex].Imaginary, 2) <= RootMatchThreshold)
                 {
                     rootFound = true;
                     rootId = rootIndex;
