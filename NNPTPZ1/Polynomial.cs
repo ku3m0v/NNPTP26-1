@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace NNPTPZ1.Mathematics
 {
-        public class Poly
+        public class Polynomial
         {
             public List<ComplexNumber> Coefficients { get; set; } = new List<ComplexNumber>();
 
@@ -13,9 +13,9 @@ namespace NNPTPZ1.Mathematics
             /// Creates the derivative of this polynomial.
             /// </summary>
             /// <returns>A new polynomial representing the derivative.</returns>
-            public Poly Differentiate()
+            public Polynomial Differentiate()
             {
-                Poly derivative = new Poly();
+                Polynomial derivative = new Polynomial();
                 for (int coefficientIndex = 1; coefficientIndex < Coefficients.Count; coefficientIndex++)
                 {
                     derivative.Coefficients.Add(Coefficients[coefficientIndex].Multiply(new ComplexNumber() { Real = coefficientIndex }));

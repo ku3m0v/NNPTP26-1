@@ -4,12 +4,12 @@ using NNPTPZ1.Mathematics;
 namespace NNPTPZ1.Mathematics.Tests
 {
     [TestClass()]
-    public class PolyTests
+    public class PolynomialTests
     {
         [TestMethod()]
         public void ToString_Polynomial_ReturnsExpectedFormat()
         {
-            Poly polynomial = CreateTestPolynomial();
+            Polynomial polynomial = CreateTestPolynomial();
 
             string expected = "(1 + 0i) + (0 + 0i)x + (1 + 0i)xx";
 
@@ -19,7 +19,7 @@ namespace NNPTPZ1.Mathematics.Tests
         [TestMethod()]
         public void Evaluate_AtZero_ReturnsOne()
         {
-            Poly polynomial = CreateTestPolynomial();
+            Polynomial polynomial = CreateTestPolynomial();
 
             ComplexNumber input = new ComplexNumber() { Real = 0, Imaginary = 0 };
             ComplexNumber expected = new ComplexNumber() { Real = 1, Imaginary = 0 };
@@ -32,7 +32,7 @@ namespace NNPTPZ1.Mathematics.Tests
         [TestMethod()]
         public void Evaluate_AtOne_ReturnsTwo()
         {
-            Poly polynomial = CreateTestPolynomial();
+            Polynomial polynomial = CreateTestPolynomial();
 
             ComplexNumber input = new ComplexNumber() { Real = 1, Imaginary = 0 };
             ComplexNumber expected = new ComplexNumber() { Real = 2, Imaginary = 0 };
@@ -45,7 +45,7 @@ namespace NNPTPZ1.Mathematics.Tests
         [TestMethod()]
         public void Evaluate_AtTwo_ReturnsFive()
         {
-            Poly polynomial = CreateTestPolynomial();
+            Polynomial polynomial = CreateTestPolynomial();
 
             ComplexNumber input = new ComplexNumber() { Real = 2, Imaginary = 0 };
             ComplexNumber expected = new ComplexNumber() { Real = 5, Imaginary = 0 };
@@ -55,9 +55,9 @@ namespace NNPTPZ1.Mathematics.Tests
             Assert.AreEqual(expected, actual);
         }
         
-        private Poly CreateTestPolynomial()
+        private Polynomial CreateTestPolynomial()
         {
-            Poly polynomial = new Poly();
+            Polynomial polynomial = new Polynomial();
             polynomial.Coefficients.Add(new ComplexNumber() { Real = 1, Imaginary = 0 });
             polynomial.Coefficients.Add(new ComplexNumber() { Real = 0, Imaginary = 0 });
             polynomial.Coefficients.Add(new ComplexNumber() { Real = 1, Imaginary = 0 });

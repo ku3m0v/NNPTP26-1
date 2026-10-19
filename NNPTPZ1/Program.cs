@@ -34,8 +34,8 @@ namespace NNPTPZ1
 
             List<ComplexNumber> roots = new List<ComplexNumber>();
 
-            Poly polynomial = CreatePolynomial();
-            Poly derivative = polynomial.Differentiate();
+            Polynomial polynomial = CreatePolynomial();
+            Polynomial derivative = polynomial.Differentiate();
 
             Console.WriteLine(polynomial);
             Console.WriteLine(derivative);
@@ -62,10 +62,10 @@ namespace NNPTPZ1
             bmp.Save(output ?? "../../../out.png");
         }
         
-        private static Poly CreatePolynomial()
+        private static Polynomial CreatePolynomial()
         {
             // TODO: poly should be parameterised?
-            Poly polynomial = new Poly();
+            Polynomial polynomial = new Polynomial();
             polynomial.Coefficients.Add(new ComplexNumber() { Real = 1 });
             polynomial.Coefficients.Add(ComplexNumber.Zero);
             polynomial.Coefficients.Add(ComplexNumber.Zero);
@@ -74,7 +74,7 @@ namespace NNPTPZ1
             return polynomial;
         }
         
-        private static Color CalculatePixelColor(double x, double y, Poly polynomial, Poly derivative, List<ComplexNumber> roots, Color[] colors)
+        private static Color CalculatePixelColor(double x, double y, Polynomial polynomial, Polynomial derivative, List<ComplexNumber> roots, Color[] colors)
         {
             ComplexNumber approximation = new ComplexNumber()
             {

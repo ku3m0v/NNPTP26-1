@@ -57,7 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ComplexNumberTests.cs" />
-    <Compile Include="PolyTests.cs" />
+    <Compile Include="PolynomialTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
