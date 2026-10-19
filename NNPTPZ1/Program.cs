@@ -32,7 +32,7 @@ namespace NNPTPZ1
             double xStep = (xMax - xMin) / width;
             double yStep = (yMax - yMin) / height;
 
-            List<Cplx> roots = new List<Cplx>();
+            List<ComplexNumber> roots = new List<ComplexNumber>();
 
             Poly polynomial = CreatePolynomial();
             Poly derivative = polynomial.Differentiate();
@@ -66,17 +66,17 @@ namespace NNPTPZ1
         {
             // TODO: poly should be parameterised?
             Poly polynomial = new Poly();
-            polynomial.Coefficients.Add(new Cplx() { Real = 1 });
-            polynomial.Coefficients.Add(Cplx.Zero);
-            polynomial.Coefficients.Add(Cplx.Zero);
-            polynomial.Coefficients.Add(new Cplx() { Real = 1 });
+            polynomial.Coefficients.Add(new ComplexNumber() { Real = 1 });
+            polynomial.Coefficients.Add(ComplexNumber.Zero);
+            polynomial.Coefficients.Add(ComplexNumber.Zero);
+            polynomial.Coefficients.Add(new ComplexNumber() { Real = 1 });
 
             return polynomial;
         }
         
-        private static Color CalculatePixelColor(double x, double y, Poly polynomial, Poly derivative, List<Cplx> roots, Color[] colors)
+        private static Color CalculatePixelColor(double x, double y, Poly polynomial, Poly derivative, List<ComplexNumber> roots, Color[] colors)
         {
-            Cplx approximation = new Cplx()
+            ComplexNumber approximation = new ComplexNumber()
             {
                 Real = x,
                 Imaginary = (float)y

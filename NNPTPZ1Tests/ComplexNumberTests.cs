@@ -4,12 +4,12 @@ using NNPTPZ1.Mathematics;
 namespace NNPTPZ1.Mathematics.Tests
 {
     [TestClass()]
-    public class CplxTests
+    public class ComplexNumberTests
     {
         [TestMethod()]
         public void ToString_ComplexNumber_ReturnsExpectedFormat()
         {
-            Cplx positiveComplexNumber = new Cplx()
+            ComplexNumber positiveComplexNumber = new ComplexNumber()
             {
                 Real = 10,
                 Imaginary = 20
@@ -17,7 +17,7 @@ namespace NNPTPZ1.Mathematics.Tests
 
             Assert.AreEqual("(10 + 20i)", positiveComplexNumber.ToString());
 
-            Cplx negativeImaginaryNumber = new Cplx()
+            ComplexNumber negativeImaginaryNumber = new ComplexNumber()
             {
                 Real = 1,
                 Imaginary = -1
@@ -25,7 +25,7 @@ namespace NNPTPZ1.Mathematics.Tests
 
             Assert.AreEqual("(1 + -1i)", negativeImaginaryNumber.ToString());
 
-            Cplx zero = new Cplx()
+            ComplexNumber zero = new ComplexNumber()
             {
                 Real = 0,
                 Imaginary = 0
@@ -37,25 +37,25 @@ namespace NNPTPZ1.Mathematics.Tests
         [TestMethod()]
         public void Add_TwoComplexNumbers_ReturnsSum()
         {
-            Cplx firstNumber = new Cplx()
+            ComplexNumber firstNumber = new ComplexNumber()
             {
                 Real = 10,
                 Imaginary = 20
             };
 
-            Cplx secondNumber = new Cplx()
+            ComplexNumber secondNumber = new ComplexNumber()
             {
                 Real = 1,
                 Imaginary = 2
             };
 
-            Cplx expected = new Cplx()
+            ComplexNumber expected = new ComplexNumber()
             {
                 Real = 11,
                 Imaginary = 22
             };
 
-            Cplx actual = firstNumber.Add(secondNumber);
+            ComplexNumber actual = firstNumber.Add(secondNumber);
 
             Assert.AreEqual(expected, actual);
         }
@@ -63,25 +63,25 @@ namespace NNPTPZ1.Mathematics.Tests
         [TestMethod()]
         public void Add_Zero_ReturnsOriginalNumber()
         {
-            Cplx number = new Cplx()
+            ComplexNumber number = new ComplexNumber()
             {
                 Real = 1,
                 Imaginary = -1
             };
 
-            Cplx zero = new Cplx()
+            ComplexNumber zero = new ComplexNumber()
             {
                 Real = 0,
                 Imaginary = 0
             };
 
-            Cplx expected = new Cplx()
+            ComplexNumber expected = new ComplexNumber()
             {
                 Real = 1,
                 Imaginary = -1
             };
 
-            Cplx actual = number.Add(zero);
+            ComplexNumber actual = number.Add(zero);
 
             Assert.AreEqual(expected, actual);
         }

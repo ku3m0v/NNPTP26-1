@@ -21,10 +21,10 @@ namespace NNPTPZ1.Mathematics.Tests
         {
             Poly polynomial = CreateTestPolynomial();
 
-            Cplx input = new Cplx() { Real = 0, Imaginary = 0 };
-            Cplx expected = new Cplx() { Real = 1, Imaginary = 0 };
+            ComplexNumber input = new ComplexNumber() { Real = 0, Imaginary = 0 };
+            ComplexNumber expected = new ComplexNumber() { Real = 1, Imaginary = 0 };
 
-            Cplx actual = polynomial.Evaluate(input);
+            ComplexNumber actual = polynomial.Evaluate(input);
 
             Assert.AreEqual(expected, actual);
         }
@@ -34,10 +34,10 @@ namespace NNPTPZ1.Mathematics.Tests
         {
             Poly polynomial = CreateTestPolynomial();
 
-            Cplx input = new Cplx() { Real = 1, Imaginary = 0 };
-            Cplx expected = new Cplx() { Real = 2, Imaginary = 0 };
+            ComplexNumber input = new ComplexNumber() { Real = 1, Imaginary = 0 };
+            ComplexNumber expected = new ComplexNumber() { Real = 2, Imaginary = 0 };
 
-            Cplx actual = polynomial.Evaluate(input);
+            ComplexNumber actual = polynomial.Evaluate(input);
 
             Assert.AreEqual(expected, actual);
         }
@@ -47,10 +47,10 @@ namespace NNPTPZ1.Mathematics.Tests
         {
             Poly polynomial = CreateTestPolynomial();
 
-            Cplx input = new Cplx() { Real = 2, Imaginary = 0 };
-            Cplx expected = new Cplx() { Real = 5, Imaginary = 0 };
+            ComplexNumber input = new ComplexNumber() { Real = 2, Imaginary = 0 };
+            ComplexNumber expected = new ComplexNumber() { Real = 5, Imaginary = 0 };
 
-            Cplx actual = polynomial.Evaluate(input);
+            ComplexNumber actual = polynomial.Evaluate(input);
 
             Assert.AreEqual(expected, actual);
         }
@@ -58,9 +58,9 @@ namespace NNPTPZ1.Mathematics.Tests
         private Poly CreateTestPolynomial()
         {
             Poly polynomial = new Poly();
-            polynomial.Coefficients.Add(new Cplx() { Real = 1, Imaginary = 0 });
-            polynomial.Coefficients.Add(new Cplx() { Real = 0, Imaginary = 0 });
-            polynomial.Coefficients.Add(new Cplx() { Real = 1, Imaginary = 0 });
+            polynomial.Coefficients.Add(new ComplexNumber() { Real = 1, Imaginary = 0 });
+            polynomial.Coefficients.Add(new ComplexNumber() { Real = 0, Imaginary = 0 });
+            polynomial.Coefficients.Add(new ComplexNumber() { Real = 1, Imaginary = 0 });
 
             return polynomial;
         }

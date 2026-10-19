@@ -2,14 +2,14 @@ using System;
 
 namespace NNPTPZ1.Mathematics
 {
-    public class Cplx
+    public class ComplexNumber
     {
         public double Real { get; set; }
         public float Imaginary { get; set; }
 
         public override bool Equals(object obj)
         {
-            if (obj is Cplx other)
+            if (obj is ComplexNumber other)
             {
                 return other.Real == Real && other.Imaginary == Imaginary;
             }
@@ -17,15 +17,15 @@ namespace NNPTPZ1.Mathematics
             return false;
         }
 
-        public readonly static Cplx Zero = new Cplx()
+        public readonly static ComplexNumber Zero = new ComplexNumber()
         {
             Real = 0,
             Imaginary = 0
         };
 
-        public Cplx Multiply(Cplx other)
+        public ComplexNumber Multiply(ComplexNumber other)
         {
-            return new Cplx()
+            return new ComplexNumber()
             {
                 Real = Real * other.Real - Imaginary * other.Imaginary,
                 Imaginary = (float)(Real * other.Imaginary + Imaginary * other.Real)
@@ -36,9 +36,9 @@ namespace NNPTPZ1.Mathematics
             return Math.Sqrt( Real * Real + Imaginary * Imaginary);
         }
 
-        public Cplx Add(Cplx other)
+        public ComplexNumber Add(ComplexNumber other)
         {
-            return new Cplx()
+            return new ComplexNumber()
             {
                 Real = Real + other.Real,
                 Imaginary = Imaginary + other.Imaginary
@@ -48,9 +48,9 @@ namespace NNPTPZ1.Mathematics
         {
             return Math.Atan(Imaginary / Real);
         }
-        public Cplx Subtract(Cplx other)
+        public ComplexNumber Subtract(ComplexNumber other)
         {
-            return new Cplx()
+            return new ComplexNumber()
             {
                 Real = Real - other.Real,
                 Imaginary = Imaginary - other.Imaginary
@@ -62,12 +62,12 @@ namespace NNPTPZ1.Mathematics
             return $"({Real} + {Imaginary}i)";
         }
 
-        internal Cplx Divide(Cplx other)
+        internal ComplexNumber Divide(ComplexNumber other)
         {
-            var numerator = Multiply(new Cplx() { Real = other.Real, Imaginary = -other.Imaginary });
+            var numerator = Multiply(new ComplexNumber() { Real = other.Real, Imaginary = -other.Imaginary });
             var denominator = other.Real * other.Real + other.Imaginary * other.Imaginary;
 
-            return new Cplx()
+            return new ComplexNumber()
             {
                 Real = numerator.Real / denominator,
                 Imaginary = (float)(numerator.Imaginary / denominator)

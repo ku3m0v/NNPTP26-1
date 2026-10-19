@@ -4,9 +4,9 @@ namespace NNPTPZ1.Mathematics
 {
         public class Poly
         {
-            public List<Cplx> Coefficients { get; set; } = new List<Cplx>();
+            public List<ComplexNumber> Coefficients { get; set; } = new List<ComplexNumber>();
 
-            public void Add(Cplx coefficient) =>
+            public void Add(ComplexNumber coefficient) =>
                 Coefficients.Add(coefficient);
 
             /// <summary>
@@ -18,7 +18,7 @@ namespace NNPTPZ1.Mathematics
                 Poly derivative = new Poly();
                 for (int coefficientIndex = 1; coefficientIndex < Coefficients.Count; coefficientIndex++)
                 {
-                    derivative.Coefficients.Add(Coefficients[coefficientIndex].Multiply(new Cplx() { Real = coefficientIndex }));
+                    derivative.Coefficients.Add(Coefficients[coefficientIndex].Multiply(new ComplexNumber() { Real = coefficientIndex }));
                 }
 
                 return derivative;
@@ -29,9 +29,9 @@ namespace NNPTPZ1.Mathematics
             /// </summary>
             /// <param name="x">The real value at which to evaluate the polynomial.</param>
             /// <returns>The polynomial value represented as a complex number.</returns>
-            public Cplx Evaluate(double x)
+            public ComplexNumber Evaluate(double x)
             {
-                return Evaluate(new Cplx() { Real = x, Imaginary = 0 });
+                return Evaluate(new ComplexNumber() { Real = x, Imaginary = 0 });
             }
 
             /// <summary>
@@ -39,13 +39,13 @@ namespace NNPTPZ1.Mathematics
             /// </summary>
             /// <param name="x">The complex value at which to evaluate the polynomial.</param>
             /// <returns>The resulting complex value of the polynomial.</returns>
-            public Cplx Evaluate(Cplx x)
+            public ComplexNumber Evaluate(ComplexNumber x)
             {
-                Cplx result = Cplx.Zero;
+                ComplexNumber result = ComplexNumber.Zero;
                 for (int i = 0; i < Coefficients.Count; i++)
                 {
-                    Cplx coefficient = Coefficients[i];
-                    Cplx poweredValue = x;
+                    ComplexNumber coefficient = Coefficients[i];
+                    ComplexNumber poweredValue = x;
 
                     if (i > 0)
                     {
