@@ -76,31 +76,13 @@ namespace NNPTPZ1
         
         private static Color CalculatePixelColor(double x, double y, Polynomial polynomial, Polynomial derivative, List<ComplexNumber> roots, Color[] colors)
         {
-            ComplexNumber approximation = new ComplexNumber()
-            {
-                Real = x,
-                Imaginary = (float)y
-            };
-
-            if (approximation.Real == 0)
-                approximation.Real = CoordinateEpsilon;
-            if (approximation.Imaginary == 0)
-                approximation.Imaginary = (float)CoordinateEpsilon;
-
-            // find solution of equation using newton's iteration
-            float iterationCount = 0;
-            for (int q = 0; q < RequiredNewtonIterations; q++)
-            {
-                var correction = polynomial.Evaluate(approximation).Divide(derivative.Evaluate(approximation));
-                approximation = approximation.Subtract(correction);
-
-                if (Math.Pow(correction.Real, 2) + Math.Pow(correction.Imaginary, 2) >= NewtonCorrectionThreshold)
-                {
-                    q--;
-                }
-
-                iterationCount++;
-            }
+            float iterationCount;
+            ComplexNumber approximation = CalculateRootApproximation(
+                x,
+                y,
+                polynomial,
+                derivative,
+                out iterationCount);
 
             // find solution root number
             var rootFound = false;
@@ -129,6 +111,41 @@ namespace NNPTPZ1
                 Math.Min(Math.Max(0, pixelColor.B - (int)iterationCount * ColorDarkeningPerIteration), 255));
 
             return pixelColor;
+        }
+        
+        private static ComplexNumber CalculateRootApproximation(
+            double x,
+            double y,
+            Polynomial polynomial,
+            Polynomial derivative,
+            out float iterationCount)
+        {
+            ComplexNumber approximation = new ComplexNumber()
+            {
+                Real = x,
+                Imaginary = (float)y
+            };
+
+            if (approximation.Real == 0)
+                approximation.Real = CoordinateEpsilon;
+            if (approximation.Imaginary == 0)
+                approximation.Imaginary = (float)CoordinateEpsilon;
+
+            iterationCount = 0;
+            for (int q = 0; q < RequiredNewtonIterations; q++)
+            {
+                var correction = polynomial.Evaluate(approximation).Divide(derivative.Evaluate(approximation));
+                approximation = approximation.Subtract(correction);
+
+                if (Math.Pow(correction.Real, 2) + Math.Pow(correction.Imaginary, 2) >= NewtonCorrectionThreshold)
+                {
+                    q--;
+                }
+
+                iterationCount++;
+            }
+
+            return approximation;
         }
     }
 }
